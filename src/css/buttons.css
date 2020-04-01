@@ -1,0 +1,75 @@
+.gray-button {
+    color: white;
+    background-color: #131313;
+}
+.gray-button:hover {
+    background-color: #4a4a4a;
+    border: 1px solid #636363;
+}
+.gray-button:active {
+    background-color: #5f5f5f;
+    border: 1px solid rgb(114, 114, 114);
+}
+
+.dark-gray-button {
+    color: white;
+    background-color: #060606;
+}
+.dark-gray-button:hover {
+    background-color: #484848;
+    border: 1px solid #5c5c5c;
+}
+.dark-gray-button:active {
+    background-color: #5f5f5f;
+    border: 1px solid #757575;
+}
+
+.transparent-button {
+    color: white;
+    background-color: transparent;
+}
+.transparent-button:hover {
+    background-color: #4a4a4a;
+    border: 1px solid #6e6e6e;
+}
+.transparent-button:active {
+    background-color: #626262;
+    border: 1px solid #878787;
+}
+
+.dark-blue-button {
+    color: white;
+    background-color: #234f64;
+}
+.dark-blue-button:hover {
+    background-color: #278aba;
+    border: 1px solid #52a1c8;
+}
+.dark-blue-button:active {
+    background-color: #2997cc;
+}
+
+.menu-toggle-button {
+    color: white;
+    background-color: #1f1f1f;
+    z-index: 2;
+}
+.menu-toggle-button:hover {
+    background-color: #333333;
+}
+.menu-toggle-button:active {
+    background-color: rgb(78, 78, 78);
+}
+
+.menu-button {
+    height: 40px;
+    color: white;
+    background-color: #1f1f1f;
+    text-align: left;
+}
+.menu-button:hover {
+    background-color: #333333;
+}
+.menu-button:active {
+    background-color: rgb(78, 78, 78);
+}

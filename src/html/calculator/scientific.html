@@ -1,0 +1,83 @@
+<div class="result"></div>
+<div class="calc-row state-toggle-row">
+    <div class="calc-row state-toggle-row-operations-container">
+        <value-select-button></value-select-button>
+        <toggle-button>F-E</toggle-button>
+    </div>
+</div>
+<div class="calc-row memory-row">
+    <div class="calc-row memory-row-operations-container">
+        <button class="transparent-button">MC</button>
+        <button class="transparent-button">MR</button>
+        <button class="transparent-button">M+</button>
+        <button class="transparent-button">M-</button>
+        <button class="transparent-button">MS</button>
+    </div>
+    <button id="memory-button"
+            class="transparent-button"
+            onclick="toggleOverlayItem('memory-container-overlay',
+                                       {closeOverlayOnClick: true, overlayClass: 'dark-overlay-container'})">
+            M<sup>&#9662;</sup>
+    </button>
+</div>
+<div class="calc-row additional-functions-row">
+    <button class="transparent-button additional-function-button">
+        <img width="15px" src="/assets/images/icons/trigonometry.png">
+        Trigonometry
+        <span windows-icon>&#xE972;</span>
+    </button>
+    <button class="transparent-button additional-function-button">
+        <img width="11px" src="/assets/images/icons/function.png">
+        Function
+        <span windows-icon>&#xE972;</span>
+    </button>
+</div>
+<div class="calc-row calc-button-row">
+    <button class="gray-button">2<sup>nd</sup></button>
+    <button class="gray-button">&pi;</button>
+    <button class="gray-button">e</button>
+    <button class="gray-button">CE</button>
+    <button class="gray-button" windows-icon>&#xE94F; <!--backspace--> </button>
+</div>
+<div class="calc-row calc-button-row">
+    <button class="gray-button">x<sup>2</sup><!--x^2--></button>
+    <button class="gray-button">1/x</button>
+    <button class="gray-button">|x|</button>
+    <button class="gray-button">exp</button>
+    <button class="gray-button">mod</button>
+</div>
+<div class="calc-row calc-button-row">
+    <button class="gray-button">x<sup>3</sup><!--x^3--></button>
+    <button class="gray-button">(</button>
+    <button class="gray-button">)</button>
+    <button class="gray-button">n!</button>
+    <button class="gray-button" windows-icon>&#xE94A; <!--divide--> </button>
+</div>
+<div class="calc-row calc-button-row">
+    <button class="gray-button">x<sup>y</sup><!--x^y--></button>
+    <button class="dark-gray-button">7</button>
+    <button class="dark-gray-button">8</button>
+    <button class="dark-gray-button">9</button>
+    <button class="gray-button" windows-icon>&#xE947; <!--multiply--> </button>
+</div>
+<div class="calc-row calc-button-row">
+    <button class="gray-button">10<sup>x</sup></button>
+    <button class="dark-gray-button">4</button>
+    <button class="dark-gray-button">5</button>
+    <button class="dark-gray-button">6</button>
+    <button class="gray-button" windows-icon>&#xE949; <!--minus--> </button>
+</div>
+<div class="calc-row calc-button-row">
+    <button class="gray-button">log</button>
+    <button class="dark-gray-button">1</button>
+    <button class="dark-gray-button">2</button>
+    <button class="dark-gray-button">3</button>
+    <button class="gray-button" windows-icon>&#xE948; <!--add--> </button>
+</div>
+<div class="calc-row calc-button-row">
+    <button class="gray-button">ln</button>
+    <button class="dark-gray-button">+/- <!--negate--> </button>
+    <button class="dark-gray-button">0</button>
+    <button class="dark-gray-button">.</button>
+    <button class="dark-blue-button" windows-icon>&#xE94E; <!--equal to--> </button>
+</div>

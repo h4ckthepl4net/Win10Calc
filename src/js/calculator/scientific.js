@@ -1,0 +1,4 @@
+(function scientificMain() {
+    initMemoryOverlayItem();
+    initHistoryOverlayItem();
+})()

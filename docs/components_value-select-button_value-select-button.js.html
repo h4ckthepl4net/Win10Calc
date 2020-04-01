@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/value-select-button/value-select-button.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/value-select-button/value-select-button.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import BaseComponent from '/components/base-component/base-component.js';
+
+/**
+ * @memberof module:Components
+ * @class
+ * @summary Class for 'value-select-button' custom element.
+ * @classdesc Class for 'value-select-button' custom element.
+ * 'value-select-button' is used to select one value from a list.
+ * When it's inner button is clicked 'value-select-button' changes
+ * selected value to next value in array which is specified in
+ * value-list attribute. To see all non-overriden static
+ * properties and methods see {@link BaseComponent}
+ * @extends BaseComponent
+ */
+class ValueSelectButton extends BaseComponent {
+
+    /**
+     * @override
+     * @see BaseComponent.___selector
+     * @default 'value-select-button'
+     */
+    static ___selector = 'value-select-button';
+
+    /**
+     * @override
+     * @see BaseComponent.___templatePath
+     * @default '/components/value-select-button/value-select-button.html'
+     */
+    static ___templatePath = '/components/value-select-button/value-select-button.html';
+
+    /**
+     * @override
+     * @see BaseComponent.___stylesheets
+     * @default ['/css/common.css','/components/value-select-button/value-select-button.css']
+     */
+    static ___stylesheets = ['/css/common.css', '/components/value-select-button/value-select-button.css'];
+    
+    /**
+     * @override
+     * @see BaseComponent.___attributes
+     * @default ['value','value-list']
+     */
+    static ___attributes = ['value', 'value-list'];
+
+    /**
+     * @memberof ValueSelectButton
+     * @description Keeps the value of value select button and
+     * the value of 'value' attribute.
+     * @private
+     * @type {any}
+     * @default null
+     */
+    #_value = null;
+    /**
+     * @memberof ValueSelectButton
+     * @description Keeps the value of value-select-button and
+     * the value of 'value' attribute.
+     * @public
+     * @type {any}
+     * @default null
+     */
+    get value() {
+        return this.#_value;
+    }
+    set value(val) {
+        if(this.#_value != val) {
+            this.#_value = val;
+            if(val) {
+                this.setAttribute('value', '');
+            } else {
+                this.removeAttribute('value');
+            }
+        }
+    }
+
+    /**
+     * @memberof ValueSelectButton
+     * @summary List of values for value-select-button.
+     * @description Keeps the list of values for value-select-button
+     * as array, which is used to iterate over list when the inner
+     * button is clicked.
+     * @private
+     * @type {Array&lt;any>}
+     * @default []
+     */
+    #_valueList = null;
+    /**
+     * @memberof ValueSelectButton
+     * @summary List of values for value-select-button.
+     * @description Keeps the list of values for value-select-button
+     * as array, which is used to iterate over list when the inner
+     * button is clicked.
+     * @public
+     * @type {Array&lt;any>}
+     * @default []
+     */
+    get valueList() {
+        return this.#_valueList;
+    }
+    set valueList(val) {
+        this.setValueList(val, true);
+    }
+
+    /**
+     * @override
+     */
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        if(attrName == 'value') {
+            this.value = newVal;
+        } else if (attrName == 'value-list') {
+            this.valueList = newVal;
+        }
+    }
+
+    /**
+     * @override
+     * @description Initializes click event handler for button with
+     * class 'value-select-button' which is in shadow DOM. If button
+     * is clicked handler changes the state of value-select-button and
+     * triggers a valueChanged event on value-select-button custom
+     * element emmiting current value of the button.
+     */
+    initEventHandlers() {
+        this.___shadow.querySelector('.value-select-button').addEventListener('click', () => {
+            this.toggled = !this.toggled;
+            this.dispatchEvent(new CustomEvent('valueChange', {
+                detail: {
+                    value: this.value
+                }
+            }));
+        })
+    }
+
+    /**
+     * @memberof ValueSelectButton
+     * @method
+     * @description Initializes template of current custom element by assigning
+     * the value of {@link BaseComponent.___template} to innerHTML property of
+     * {@link BaseComponent#___mainContainer}
+     * @public
+     * @instance
+     * @param {Array&lt;any>} valueList
+     * @param {boolean} [resetValue = true]
+     * @returns {void}
+     */
+    setValueList(valueList, resetValue = true) {
+
+    }
+}
+
+export {ValueSelectButton as default}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Components.html">Components</a></li></ul><h3>Classes</h3><ul><li><a href="module-Components.BaseComponent.html">BaseComponent</a></li><li><a href="module-Components.ToggleButton.html">ToggleButton</a></li><li><a href="module-Components.ValueSelectButton.html">ValueSelectButton</a></li></ul><h3>Global</h3><ul><li><a href="global.html#importAll">importAll</a></li><li><a href="global.html#importComponents">importComponents</a></li><li><a href="global.html#markActiveButton">markActiveButton</a></li><li><a href="global.html#overlay">overlay</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Apr 01 2020 15:52:07 GMT+0400 (Armenia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

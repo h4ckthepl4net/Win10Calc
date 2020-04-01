@@ -1,0 +1,18 @@
+{
+  "name": "simple-calc",
+  "version": "0.0.1",
+  "description": "Web version of Windows 10 calculator",
+  "main": "./src/main.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jsdoc": "rd /s /q docs && \"./node_modules/.bin/jsdoc\" -c jsdoc.json src"
+  },
+  "author": "h4ckthepl4net",
+  "license": "MIT",
+  "dependencies": {
+    "jsdoc": "^3.6.3"
+  }
+}

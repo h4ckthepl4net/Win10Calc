@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/toggle-button/toggle-button.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/toggle-button/toggle-button.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import BaseComponent from '/components/base-component/base-component.js';
+
+/**
+ * @memberof module:Components
+ * @class
+ * @summary Class for 'toggle-button' custom element.
+ * @classdesc Class for 'toggle-button' custom element.
+ * 'toggle-button' custom element is used as checkbox,
+ * it toggles it's state when inner button is clicked.
+ * To see all non-overriden static properties and methods.
+ * see {@link BaseComponent}
+ * @extends BaseComponent
+ */
+class ToggleButton extends BaseComponent {
+
+    /**
+     * @override
+     * @see BaseComponent.___selector
+     * @default 'toggle-button'
+     */
+    static ___selector = 'toggle-button';
+
+    /**
+     * @override
+     * @see BaseComponent.___templatePath
+     * @default '/components/toggle-button/toggle-button.html'
+     */
+    static ___templatePath = '/components/toggle-button/toggle-button.html';
+
+    /**
+     * @override
+     * @see BaseComponent.___stylesheets
+     * @default ['/css/common.css','/components/toggle-button/toggle-button.css']
+     */
+    static ___stylesheets = ['/css/common.css', '/components/toggle-button/toggle-button.css'];
+    
+    /**
+     * @override
+     * @see BaseComponent.___attributes
+     * @default ['toggled','button-style']
+     */
+    static ___attributes = ['toggled', 'button-style'];
+
+    /**
+     * @memberof ToggleButton
+     * @description Keeps the state of toggle button and
+     * the value of 'toggled' attribute.
+     * @private
+     * @type {boolean}
+     * @default false
+     */
+    #_toggled = false;
+    /**
+     * @memberof ToggleButton
+     * * @description Keeps the state of toggle button and
+     * the value of 'toggled' attribute.
+     * @public
+     * @type {boolean}
+     * @default false
+     */
+    get toggled() {
+        return this.#_toggled;
+    }
+    set toggled(val) {
+        if(this.#_toggled != val) {
+            this.#_toggled = val;
+            if(val) {
+                this.setAttribute('toggled', '');
+            } else {
+                this.removeAttribute('toggled');
+            }
+        }
+    }
+
+    /**
+     * @memberof ToggleButton
+     * @description Specifies the style of toggle button.
+     * Also keeps value of 'button-style' attribute
+     * @private
+     * @type {'underline'|'background'|'none'}
+     * @default 'underline'
+     */
+    #_buttonStyle = 'underline';
+    /**
+     * @memberof ToggleButton
+     * @description Specifies the style of toggle button.
+     * Also keeps value of 'button-style' attribute
+     * @public
+     * @type {'underline'|'background'|'none'}
+     * @default 'underline'
+     */
+    get buttonStyle() {
+        return this.#_buttonStyle;
+    }
+    set buttonStyle(val) {
+        if(this.#_buttonStyle != val) {
+            if(val == 'background' || val == 'none') {
+                this.#_buttonStyle = val;
+            } else {
+                this.#_buttonStyle = 'underline';
+            }
+            this.setAttribute('button-style', this.#_buttonStyle);
+        }
+    }
+
+    /**
+     * @override
+     */
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        if(attrName == 'button-style') {
+            this.buttonStyle = newVal;
+        } else if (attrName == 'toggled') {
+            if(oldVal == null) {
+                this.toggled = true;
+            } else if(newVal == null) {
+                this.toggled = false;
+            }
+        }
+    }
+
+    /**
+     * @override
+     * @description Initializes click event handler for button with
+     * class 'toggle-button' which is in shadow DOM. If button is
+     * clicked handler toggles state of toggle-button and triggers
+     * a toggle event on toggle-button custom element emmiting current
+     * state of the button.
+     */
+    initEventHandlers() {
+        this.___shadow.querySelector('.toggle-button').addEventListener('click', () => {
+            this.toggled = !this.toggled;
+            this.dispatchEvent(new CustomEvent('toggle', {
+                detail: {
+                    toggled: this.toggled
+                }
+            }));
+        })
+    }
+
+}
+
+export {ToggleButton as default};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Components.html">Components</a></li></ul><h3>Classes</h3><ul><li><a href="module-Components.BaseComponent.html">BaseComponent</a></li><li><a href="module-Components.ToggleButton.html">ToggleButton</a></li><li><a href="module-Components.ValueSelectButton.html">ValueSelectButton</a></li></ul><h3>Global</h3><ul><li><a href="global.html#importAll">importAll</a></li><li><a href="global.html#importComponents">importComponents</a></li><li><a href="global.html#markActiveButton">markActiveButton</a></li><li><a href="global.html#overlay">overlay</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Apr 01 2020 15:52:07 GMT+0400 (Armenia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

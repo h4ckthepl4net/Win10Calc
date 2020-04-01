@@ -1,0 +1,67 @@
+.menu {
+    display: grid;
+    grid-template-rows: auto 70px;
+    position: absolute;
+    padding-top: 48px;
+    height: 100%;
+    width: 255px;
+    background-color: #1f1f1f;
+    transition: cubic-bezier(0.05, 0.47, 0, 0.99) 0.3s;
+    pointer-events: all;
+}
+.menu[data-is-open=false] {
+    transition: linear 0.1s;
+    transform: translateX(-100%);
+}
+
+.menu-label {
+    display: grid;
+    padding-left: 12px;
+    align-items: center;
+    height: 40px;
+    color: white;
+}
+
+.menu-button-container {
+    display: grid;
+    overflow: auto;
+}
+
+.menu-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 5px;
+}
+.menu-button > * {
+    pointer-events: none;
+}
+
+.menu-button-active-mark {
+    display: block;
+    border-radius: 2px/9px;
+    min-width: 2px;
+    height: 25px;
+}
+.menu-button-active-mark[data-is-active='true'] {
+    background-color: #2997cc;
+}
+
+.menu-button-icon, .menu-button-txt {
+    margin: 0 7px;
+}
+
+.about-button-container {
+    padding: 20px 0 10px;
+}
+
+.about-button {
+    width: 100%;
+    padding-left: 12px;
+}
+
+/** Scrollbar styles **/
+
+/*TODO Add scrollbar styles for menu */
+
+/*** Scrollbar styles ***/

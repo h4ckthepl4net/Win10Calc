@@ -1,0 +1,85 @@
+@import "css/buttons.css";
+@import "css/menu.css";
+@import "css/history-memory.css";
+
+/** Global styles **/
+
+body, html, .main-container, .calc-content, .overlay-container {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    min-width: 322px;
+    min-height: 470px;
+}
+
+.calc-content {
+    display: grid;
+    grid-template-rows: 40px auto;
+    background-color: #1f1f1f;
+}
+
+.history-memory-container {
+    background-color: #1f1f1f;
+    max-width: 300px;
+    min-width: 235px;
+}
+
+.calc-dynamic-content {
+    display: grid;
+    gap: 2px;
+    padding: 0 5px 5px;
+}
+
+.overlay-container {
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.calc-row {
+    display: grid;
+    gap: 2px;
+}
+
+.top-bar {
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+}
+
+.top-bar-title {
+    display: grid;
+    align-items: center;
+    padding-left: 12px;
+    color: white;
+}
+
+/*** Global styles ***/
+
+/** Global media queries **/
+
+@media only screen and (max-width: 560px) {
+    .history-memory-container {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 561px) {
+    .main-container {
+        display: grid;
+        grid-template-columns: auto minmax(235px, 300px);
+    }
+
+    #history-button {
+        display: none;
+    }
+
+    #memory-button {
+        display: none;
+    }
+}
+
+/*** Global media queries ***/

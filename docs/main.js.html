@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Dynamic imports **/
+
+function importAll() {
+    importComponents();
+}
+
+/*** Dynamic imports ***/
+
+/** Custom elements/components **/
+
+function importComponents() {
+    import('./components/index.js').then((module) => {
+        window.Components = Object.values(module);
+        defineCustomElements(window.Components);
+    });
+}
+function defineCustomElements(componentsArr) {
+    componentsArr.forEach((component) => {
+        component.defineElement();
+    });
+}
+
+/*** Custom elements/components ***/
+
+/** Menu buttons **/
+
+function markActiveButton() {
+    if (typeof markActiveButton.activeButtonIndex === 'undefined') {
+        markActiveButton.activeButtonIndex = -1;
+    }
+    let activeButtonIndex = markActiveButton.activeButtonIndex;
+    let topBarTitle = document.getElementById('top-bar-title').innerText.toLowerCase();
+    if (topBarTitle) {
+        let menuButtonsSelectedMarks = Array.from(document.getElementsByClassName('menu-button-active-mark'));
+        if (activeButtonIndex >= 0) {
+            menuButtonsSelectedMarks[activeButtonIndex].setAttribute('data-is-active', false);
+        }
+        activeButtonIndex = Array.from(document.getElementsByClassName('menu-button-txt'))
+            .findIndex((el) => el.innerText.toLowerCase() == topBarTitle);
+        if (activeButtonIndex >= 0) {
+            menuButtonsSelectedMarks[activeButtonIndex].setAttribute('data-is-active', true);
+        }
+    }
+}
+function navigateToAnotherCalcType(event) {
+    window.location = event.target.getAttribute('data-href');
+}
+
+/*** Menu buttons ***/
+
+/** Overlay **/ 
+
+function overlay() {
+    if (!overlay.openItems) {
+        overlay.openItems = [];
+    }
+}
+function toggleOverlayItem(elementId, options = {}) {
+    let overlayContainer = document.getElementById('overlay-container');
+    if (overlayContainer) {
+        let element = document.getElementById(elementId);
+        if (overlayContainer.contains(element)) {
+            let attrValue = (element.getAttribute('data-is-open') === 'true');
+            element.setAttribute('data-is-open', (!attrValue).toString());
+            if (!attrValue) {
+                overlay.openItems.push({
+                    element,
+                    overlayClass: options.overlayClass,
+                    closeOverlayOnClick: !!options.closeOverlayOnClick
+                });
+                if(options.overlayClass) {
+                    overlayContainer.classList.add(options.overlayClass);
+                }
+            } else {
+                let index = overlay.openItems.findIndex((arrEl) => arrEl.element === element);
+                if (index >= 0) {
+                    let arrEl = overlay.openItems.splice(index, 1);
+                    if(arrEl.overlayClass) {
+                        overlayContainer.classList.remove(arrEl.overlayClass);
+                    }
+                }
+            }
+            if (overlay.openItems.reduce((totalCnt, el) => totalCnt + el.closeOverlayOnClick, 0) == 0) {
+                overlayContainer.style.pointerEvents = 'none';
+            } else {
+                overlayContainer.style.pointerEvents = 'all';
+            }
+        } else {
+            throw "Error in function toggleOverlayItem(): Element with mentioned id is not inside overlay container";
+        }
+    } else {
+        throw "Error in function toggleOverlayItem(): Cannot find overlay container";
+    }
+}
+function overlayClickHandler(event) {
+    let overlayContainer = document.getElementById('overlay-container');
+    if (event.target === overlayContainer) {
+        if (overlayContainer) {
+            let index = overlay.openItems.findLastIndex((el) => el.closeOverlayOnClick);
+            let arrEl = {};
+            if (index >= 0) {
+                arrEl = overlay.openItems.splice(index, 1)[0];
+            }
+            if (overlayContainer.contains(arrEl.element)) {
+                let attrValue = (arrEl.element.getAttribute('data-is-open') === 'true');
+                arrEl.element.setAttribute('data-is-open', (!attrValue).toString());
+                if (attrValue === false) {
+                    throw "Error in function overlayClickHandler(): Mentioned overlay element is already closed";
+                }
+                if(arrEl.overlayClass) {
+                    overlayContainer.classList.remove(arrEl.overlayClass);
+                }
+                if (overlay.openItems.reduce((totalCnt, el) => totalCnt + el.closeOverlayOnClick, 0) == 0) {
+                    overlayContainer.style.pointerEvents = 'none';
+                }
+            } else {
+                throw "Error in function overlayClickHandler(): Last element opened with overlay is not inside overlay container";
+            }
+        } else {
+            throw "Error in function overlayClickHandler(): Cannot find overlay container";
+        }
+    }
+}
+function closeAllOpenOverlayItems() {
+    if(overlay.openItems.length) {
+        let overlayContainer = document.getElementById('overlay-container');
+        if (overlayContainer) {
+            overlay.openItems.forEach((arrEl, index) => {
+                if (overlayContainer.contains(arrEl.element)) {
+                    let attrValue = (arrEl.element.getAttribute('data-is-open') === 'true');
+                    if (attrValue === false) {
+                        throw `Error in function closeAllOpenOverlayItems(): Overlay element at index ${index} is already closed`;
+                    }
+                    arrEl.element.setAttribute('data-is-open', (!attrValue).toString());
+                } else {
+                    throw `Error in function closeAllOpenOverlayItems(): Element at index ${index} is not inside overlay container`;
+                }
+            });
+            overlay.openItems = [];
+            overlayContainer.style.pointerEvents = 'none';
+            overlayContainer.setAttribute('class', 'overlay-container');
+        } else {
+            throw "Error in function closeAllOpenOverlayItems(): Cannot find overlay container";
+        }
+    }
+}
+
+/*** Overlay ***/
+
+(function main() {
+    importAll();
+    markActiveButton();
+    overlay();
+})()</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Components.html">Components</a></li></ul><h3>Classes</h3><ul><li><a href="module-Components.BaseComponent.html">BaseComponent</a></li><li><a href="module-Components.ToggleButton.html">ToggleButton</a></li><li><a href="module-Components.ValueSelectButton.html">ValueSelectButton</a></li></ul><h3>Global</h3><ul><li><a href="global.html#importAll">importAll</a></li><li><a href="global.html#importComponents">importComponents</a></li><li><a href="global.html#markActiveButton">markActiveButton</a></li><li><a href="global.html#overlay">overlay</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Apr 01 2020 15:52:07 GMT+0400 (Armenia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

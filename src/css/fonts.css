@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: light;
+    src: url('../assets/fonts/segoe-ui-light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: lighter;
+    src: url('../assets/fonts/segoe-ui-lighter.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../assets/fonts/segoe-ui.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bolder;
+    src: url('../assets/fonts/segoe-ui-bolder.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    src: url('../assets/fonts/segoe-ui-bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    src: url('../assets/fonts/segoe-ui-bold.woff2') format('woff2');
+}
+
+/** Icon fonts **/
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/icon/material-icons.woff2') format('woff2');
+}
+  
+[material-icon] {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+    font-family: 'Windows Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/icon/segoe-mdl2-assets.woff2') format('woff2');
+}
+
+[windows-icon] {
+    font-family: 'Windows Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+/*** Icon fonts ***/
